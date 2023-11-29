@@ -14,5 +14,14 @@ namespace ALLUP2.Models
         public List<ProductTag>? ProductTags { get; set; }
         [NotMapped]
         public List<int> TagIds { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
+        [NotMapped]
+        public List<IFormFile>? ImageFiles { get; set; }
+        [NotMapped]
+        public IFormFile? ProductPosterImageFile {  get; set; }
+
+        [NotMapped]
+        public List<int>? ProductImageIds { get; set; }
+            
     }
 }

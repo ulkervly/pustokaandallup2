@@ -45,7 +45,7 @@ namespace PustokPractice.Areas.Manage.Controllers
 
         public IActionResult Update(int id)
         {
-            var existGenre= _context.Genre.FirstOrDefault(x=>x.id==id);
+            var existGenre= _context.Genre.FirstOrDefault(x=>x.Id ==id);
             if (existGenre==null) return NotFound();
             return View(existGenre);
         }
@@ -56,9 +56,9 @@ namespace PustokPractice.Areas.Manage.Controllers
             {
                 return View();
             }
-            var existGenre = _context.Genre.FirstOrDefault(x => x.id ==genre.id);
+            var existGenre = _context.Genre.FirstOrDefault(x => x.Id ==genre.Id);
             if(existGenre==null) return NotFound();
-            if (_context.Genre.Any(x =>x.id!=genre.id  && x.Name.ToLower() == genre.Name.ToLower())) ;
+            if (_context.Genre.Any(x =>x.Id !=genre.Id  && x.Name.ToLower() == genre.Name.ToLower())) ;
             {
                 ModelState.AddModelError("Name", "genre already exist");
                 

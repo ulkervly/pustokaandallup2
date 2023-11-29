@@ -70,7 +70,7 @@ namespace PustokPractice.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Update(Slider slider)
         {
-            Slider existSlider = _context.Sliders.FirstOrDefault(x => x.id== slider.id);
+            Slider existSlider = _context.Sliders.FirstOrDefault(x => x.Id== slider.Id);
             if (existSlider == null) return NotFound();
 
             if (!ModelState.IsValid) return View();
@@ -110,7 +110,7 @@ namespace PustokPractice.Areas.Manage.Controllers
         }
         public IActionResult Delete(int id)
         {
-            Slider slider = _context.Sliders.FirstOrDefault(x => x.id == id);
+            Slider slider = _context.Sliders.FirstOrDefault(x => x.Id == id);
             if (slider == null) return Json(new { status = 404 });
 
             _context.Sliders.Remove(slider);

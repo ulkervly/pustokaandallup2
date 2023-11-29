@@ -41,13 +41,13 @@ namespace PustokPractice.Areas.Manage.Controllers
 
                 return View();
             }
-            if (!_context.Genre.Any(a => a.id == book.GenreId))
+            if (!_context.Genre.Any(a => a.Id == book.GenreId))
             {
                 ModelState.AddModelError("GenreId", "genre is not found!");
                 return View();
             }
 
-            if (!_context.Authors.Any(a => a.id == book.AuthorId))
+            if (!_context.Authors.Any(a => a.Id == book.AuthorId))
             {
                 ModelState.AddModelError("AuthorId", "Author is not found!");
                 return View();
@@ -66,14 +66,17 @@ namespace PustokPractice.Areas.Manage.Controllers
             }
             if (check)
             {
-                foreach (var item in book.TagIds)
+                if (book.TagIds != null)
                 {
-                    BookTag bookTag = new BookTag()
+                    foreach (var item in book.TagIds)
                     {
-                        Book = book,
-                        TagId = item,
-                    };
-                    _context.BookTags.Add(bookTag);
+                        BookTag bookTag = new BookTag()
+                        {
+                            Book = book,
+                            TagId = item,
+                        };
+                        _context.BookTags.Add(bookTag);
+                    }
                 }
             }
             else
@@ -94,7 +97,7 @@ namespace PustokPractice.Areas.Manage.Controllers
             ViewBag.Genre = _context.Genre.ToList();
             ViewBag.Tags = _context.Tags.ToList();
 
-            Book existBook = _context.Books.Include(x => x.BookTags).FirstOrDefault(x => x.id == id);
+            Book existBook = _context.Books.Include(x => x.BookTags).FirstOrDefault(y=>y.Id==id);
             if (existBook == null) return NotFound();
 
             existBook.TagIds = existBook.BookTags.Select(x => x.TagId).ToList();
@@ -113,7 +116,7 @@ namespace PustokPractice.Areas.Manage.Controllers
             {
                 return View();
             }
-            Book existBook = _context.Books.Include(x => x.BookTags).FirstOrDefault(x => x.id == book.id);
+            Book existBook = _context.Books.Include(x => x.BookTags).FirstOrDefault(x => x.Id == book.Id);
             if (existBook == null) return NotFound();
 
 

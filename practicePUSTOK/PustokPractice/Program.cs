@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer("Server=DESKTOP-1TG370G;Database=Pustoknew;Trusted_Connection=True");
+    options.UseSqlServer("Server=DESKTOP-1TG370G;Database=Pustoknew3;Trusted_Connection=True");
 });
 var app = builder.Build();
 
